@@ -18,3 +18,8 @@ much effort it could be to parse a simple file. Yet compared to C this all feels
 ## Day 02 - Red-nosed Reports
 
 I like Zig's error handling, it is close to Go, but with less boilerplate.
+
+## Day 03 - Mull it over
+
+String processing is like in Go, not too comfortable, but clearly more comfortable than C. Also
+the range switching using `...` is nice.
