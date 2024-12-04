@@ -23,3 +23,15 @@ I like Zig's error handling, it is close to Go, but with less boilerplate.
 
 String processing is like in Go, not too comfortable, but clearly more comfortable than C. Also
 the range switching using `...` is nice.
+
+## Day 04 - Ceres Search
+
+Scanning grids is an AoC all-time favorite. A good opportunity to learn about Zig's import mechanism by
+extracting "library" code for that. Quite frustrating that `@import("../util/grid.zig")` does not work,
+as for some reason I could not follow Zig only allows you to import from folders below the main program's
+folder. So no multiple executables in different sub-folders as in Go.
+
+Instead of moving all programs into the root folder I am now using symlinks to bypass this logic and have
+a shared `util` library folder-
+
+Also, I stumbled over `for (0..width-1)` being exclusive at the right end :-D
