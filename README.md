@@ -32,6 +32,11 @@ as for some reason I could not follow Zig only allows you to import from folders
 folder. So no multiple executables in different sub-folders as in Go.
 
 Instead of moving all programs into the root folder I am now using symlinks to bypass this logic and have
-a shared `util` library folder-
+a shared `util` library folder.
 
 Also, I stumbled over `for (0..width-1)` being exclusive at the right end :-D
+
+## Day 05 - Print Queue
+
+This day seemed to play into Zig's strengths. The `AutoHashMap` and the fact that plain structs
+can be used as keys worked out really well.
