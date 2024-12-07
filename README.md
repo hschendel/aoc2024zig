@@ -45,3 +45,8 @@ can be used as keys worked out really well.
 
 I failed miserably on part two. There is still a bug in my code, and I did not want to spend the whole day
 chasing it.
+
+## Day 07 - Bridge Repair
+
+Funny side note: Lazy thinker that I am, I implemented `concat` first using `std.fmt.allocPrint`, having to 
+allocate and free. It was shockingly slow.
