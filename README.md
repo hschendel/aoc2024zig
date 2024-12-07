@@ -40,3 +40,8 @@ Also, I stumbled over `for (0..width-1)` being exclusive at the right end :-D
 
 This day seemed to play into Zig's strengths. The `AutoHashMap` and the fact that plain structs
 can be used as keys worked out really well.
+
+## Day 06 - Guard Gallivant
+
+I failed miserably on part two. There is still a bug in my code, and I did not want to spend the whole day
+chasing it.

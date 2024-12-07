@@ -35,6 +35,19 @@ pub const Grid = struct {
         return self.data[uy * (self.width + 1) + ux];
     }
 
+    pub fn set(self: Grid, x: isize, y: isize, c: u8) !void {
+        if (x < 0 or y < 0 or x >= self.width or y >= self.height){
+            return error.OutOfBounds;
+        }
+        const uy: usize = @intCast(y);
+        const ux: usize = @intCast(x);
+        self.data[uy * (self.width + 1) + ux] = c;
+    }
+
+    pub const GridError = error {
+        OutOfBounds,
+    };
+
     pub fn walk_all_directions(self: Grid, f: WalkFn) void {
         self.dir_scan_x(f, 0, self.width-1, 0, 0, 1);
         self.dir_scan_x(f, 0, self.width-1, self.height-1, 0, -1);
@@ -57,18 +70,51 @@ pub const Grid = struct {
 
     pub fn for_each(self: Grid, f: CellFn) void {
         for (0..self.width) |x| {
+            const ix: isize = @intCast(x);
             for (0..self.height) |y| {
-                const c = self.get(x, y);
+                const iy: isize = @intCast(y);
+                const c = self.get(ix, iy);
                 if (c != null) {
-                    f(x, y, c);
+                    f(x, y, c.?);
                 }
             }
         }
     }
 
+    pub fn search_first(self: Grid, search_c: u8) ?Pos {
+        for (0..self.width) |x| {
+            const ix: isize = @intCast(x);
+            for (0..self.height) |y| {
+                const iy: isize = @intCast(y);
+                const c = self.get(ix, iy);
+                if (c != null) {
+                    if (search_c == c.?) {
+                        return Pos{.x = x, .y = y};
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    pub const Pos = struct {
+        x: usize,
+        y: usize
+    };
+
     pub const WalkFn = fn(state: u8, c: u8) u8;
 
     pub const CellFn = fn(x: usize, y: usize, c: u8) void;
+
+    pub fn print(self: Grid) void {
+        for (0..self.height) |y| {
+            for (0..self.width) |x| {
+                const c = self.data[y * (self.width + 1) + x];
+                std.debug.print("{c}", .{c});
+            }
+            std.debug.print("\n", .{});
+        }
+    }
 
     fn dir_scan_x(self: Grid, f: WalkFn, from_x: usize, to_x: usize, sy: usize, dx: isize, dy: isize) void {
         for (from_x..to_x+1) |sx| {
