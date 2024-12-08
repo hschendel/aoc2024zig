@@ -50,3 +50,15 @@ chasing it.
 
 Funny side note: Lazy thinker that I am, I implemented `concat` first using `std.fmt.allocPrint`, having to 
 allocate and free. It was shockingly slow.
+
+## Day 08 - Resonant Collinearity
+
+I used an AutoHashMap of ArrayLists to group the antennae, and that took a bit to get used to in Zig.
+In the end the code looks a bit like Go with the additional caveat that I need to call `deinit()` on every list.
+Also, I do not yet understand why I have to use `@constCast` for this line to compile:
+
+```
+try putAntinodes(@constCast(&map), pos1, pos2, @constCast(&antinodes));
+```
+
+But I will do my homework ;)

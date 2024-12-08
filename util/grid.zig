@@ -26,6 +26,13 @@ pub const Grid = struct {
         allocator.free(self.data);
     }
 
+    pub fn mustSet(self: Grid, x: usize, y: usize, c: u8) void {
+        if (x >= self.width or y >= self.height) {
+            unreachable;
+        }
+        self.data[y * (self.width + 1) + x] = c;
+    }
+
     pub fn get(self: Grid, x: isize, y: isize) ?u8 {
         if (x < 0 or y < 0 or x >= self.width or y >= self.height){
             return null;
@@ -33,6 +40,13 @@ pub const Grid = struct {
         const uy: usize = @intCast(y);
         const ux: usize = @intCast(x);
         return self.data[uy * (self.width + 1) + ux];
+    }
+
+    pub fn mustGet(self: Grid, x: usize, y: usize) u8 {
+        if (x >= self.width or y >= self.height) {
+            unreachable;
+        }
+        return self.data[y * (self.width + 1) + x];
     }
 
     pub fn set(self: Grid, x: isize, y: isize, c: u8) !void {
