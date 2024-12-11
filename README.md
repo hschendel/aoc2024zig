@@ -62,3 +62,18 @@ try putAntinodes(@constCast(&map), pos1, pos2, @constCast(&antinodes));
 ```
 
 But I will do my homework ;)
+
+## Day 09 - Disk Fragmenter
+
+Zig's loop constructs do not feel well-rounded to me. Try to iterate backwards over an array using a `usize`
+index.
+
+## Day 10 - Hoof It
+
+I did only have 30 minutes and could not manage to get my solution to compile in that timebox.
+
+## Day 11 - Plutonian Pebbles
+
+Classic AoC. You start implementing a data structure in part one, and in part two it becomes obvious that this
+would blow up your memory. Then you see that you would not have needed to store things in memory anyway. Then
+you realize the thing is highly repetitive and add a lookup table :-D
