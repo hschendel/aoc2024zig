@@ -26,6 +26,11 @@ pub const Grid = struct {
         allocator.free(self.data);
     }
 
+    pub fn copy(self: Grid, allocator: std.mem.Allocator) !Grid {
+        const data_copy = try allocator.dupe(u8, self.data);
+        return Grid{.width = self.width, .height = self.height, .data = data_copy};
+    }
+
     pub fn mustSet(self: Grid, x: usize, y: usize, c: u8) void {
         if (x >= self.width or y >= self.height) {
             unreachable;

@@ -77,3 +77,18 @@ I did only have 30 minutes and could not manage to get my solution to compile in
 Classic AoC. You start implementing a data structure in part one, and in part two it becomes obvious that this
 would blow up your memory. Then you see that you would not have needed to store things in memory anyway. Then
 you realize the thing is highly repetitive and add a lookup table :-D
+
+## Day 12 - Garden Groups
+
+Did not get part two to work yet.
+
+## Day 13 - Claw Contraption
+
+Linear equation solving is nothing I have been doing a lot recently. Part two required me to do some consulting
+with ChatGPT about mathematical approaches bringing me back to Cramer's rule I must have learned at university
+a while ago :-D
+
+## Day 14 - Restroom Redoubt
+
+While part one felt easy to me, part two almost drove me nuts. How should I detect the frame with the Christmas
+tree? Printing all the frames to the screen made me overlook it. I finally looked for a straight line and found it.
