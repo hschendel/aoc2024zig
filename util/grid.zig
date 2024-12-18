@@ -1,9 +1,9 @@
 const std = @import("std");
 
 pub const Grid = struct {
-    width: usize,
-    height: usize,
-    data: []u8,
+    width: usize = 0,
+    height: usize = 0,
+    data: []u8 = &[_]u8{},
 
     pub fn init(allocator: std.mem.Allocator, filename: []const u8) !Grid {
         const file = try std.fs.cwd().openFile(filename, .{});
@@ -20,6 +20,15 @@ pub const Grid = struct {
         const height: usize = (data.len + 1) / (width+1);
 
         return Grid {.width = width, .height = height, .data = data };
+    }
+
+    pub fn appendRow(self: *Grid, allocator: std.mem.Allocator, line_without_break: []const u8) !void {
+        const old_len = self.data.len;
+        self.data = try allocator.realloc(self.data, old_len + line_without_break.len + 1);
+        @memcpy(self.data[old_len..self.data.len-1], line_without_break);
+        self.data[self.data.len-1] = '\n';
+        self.height += 1;
+        self.width = if (line_without_break.len > self.width) line_without_break.len else self.width;
     }
 
     pub fn uninit(self: Grid, allocator: std.mem.Allocator) void {
